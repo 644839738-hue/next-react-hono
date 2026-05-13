@@ -38,6 +38,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     resolver: zodResolver(createProjectSchema),
     defaultValues: {
       name: "",
+      workspaceId,
     },
   });
 
@@ -49,9 +50,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
     }
 
     mutate({ form: finalValues }, {
-      onSuccess: ({data}) => {
+      onSuccess: ({ data }) => {
         form.reset();
-        router.push(`/workspace/${workspaceId}/projects/${data.$id}`);
+        router.push(`/workspaces/${workspaceId}/projects/${data.$id}`);
       }
     })
   };
